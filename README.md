@@ -2,27 +2,44 @@
 
 Latex template for JSAI Conference
 
+Configured for writing in Japanese by default.
 
-### 1. Prerequisities
+### 1. Edit LaTeX files
 
-```bash
-# only for ubuntu 12.04
-$ sudo apt-add-repository ppa:texlive-backports/ppa
-$ sudo apt-get update
+To write a paper in English, change configuration as follows:
+
+```diff
+# main.tex
+- \documentclass[twocolumn]{jarticle}
++ %% \documentclass[twocolumn]{jarticle}
+
+- %% \documentclass[twocolumn]{article}  % use this for English instead of jarticle
++ \documentclass[twocolumn]{article}  % use this for English instead of jarticle
 ```
 
-### 2. Edit LaTeX files
+```diff
+# latexmkrc
+- $pdf_mode = 3;  # for japanese
++ # $pdf_mode = 3;  # for japanese
 
-### 3. Make pdf
+- # $pdf_mode = 1;  # for english
++ $pdf_mode = 1;  # for english
+```
+
+### 2. Make pdf
 
 ```bash
-$ make
+$ make          # TeX is automatically installed if not yet installed
 # or
-$ latexmk main -pvc
+$ make preview  # make & open pdf viewer
+# or
+$ make forever  # make & open pdf viewer & continuous compilation
 ```
-### 4. Formatize for publication
+
+### 3. Cleanup Project (Optional)
 
 ```bash
-$ make pub
+$ make clean
+# or
+$ make wipe     # super clean
 ```
-
