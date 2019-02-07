@@ -23,6 +23,11 @@ preview: install
 forever: install
 	$(LATEXMK_EXEC) -pvc $(TARGET)
 
+%.tex.orig: %.tex
+	sed -i.orig -e's/、/，/g' -e's/。/．/g' $<
+publish: $(addsuffix .orig, $(wildcard *.tex src/*.tex)) all
+pub: publish
+
 clean: install
 	$(LATEXMK_EXEC) -c
 
